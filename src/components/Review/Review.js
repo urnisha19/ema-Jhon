@@ -10,6 +10,9 @@ const Review = () => {
     const [cart, setCart] = useState([]);
     // eslint-disable-next-line no-unused-vars
     const [orderPlaced, setOrderPlaced] = useState(false);
+
+
+    //Proceed Checkout e click korle shipment page e jabe
     const history = useHistory()
     const handleProceedCheckout = () => {
         history.push('/shipment');

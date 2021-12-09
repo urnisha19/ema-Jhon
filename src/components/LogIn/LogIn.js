@@ -13,10 +13,12 @@ function LogIn() {
         email: '',
         password: ''
     });
-    const [setLoggedInUser] = useContext(UserContext);
+    const [setLoggedInUser] = useContext(UserContext);//consume userContext created in App.js
+
+    //Login kora por page redirect korar jonno useHistory() and useLocation() use kora hoy. history redirect kore and locationkun location tke asche state niye ashe
     const history = useHistory();
     const location = useLocation();
-    let { from } = location.state || { from: { pathname: "/" } };
+    let { from } = location.state || { from: { pathname: "/" } };//Private route teke login e ashle login kora por location.state dara oi component e jabe else home page e jabe. tarpor login hocche se function e amra history.replace(from) dara page replace kore dibo
 
     initializeLoginFramework();
 
@@ -25,7 +27,7 @@ function LogIn() {
         setUser(res);
         setLoggedInUser(res);
         if (redirect) {
-            history.replace(from);
+            history.replace(from); //sign in hobar pore kun page e jabe ta history.replace
         }
 
     }
@@ -88,11 +90,11 @@ function LogIn() {
 
     return (
         <div className="App">
-            { user.isSignedIn ? <button onClick={signOut}> <FontAwesomeIcon icon={faGoogle} /> Sign Out</button> :
+            {user.isSignedIn ? <button onClick={signOut}> <FontAwesomeIcon icon={faGoogle} /> Sign Out</button> :
                 <button onClick={googleSignIn}> <FontAwesomeIcon icon={faGoogle} /> Sign In</button>
             }
             <br />
-            { user.isSignedIn ? <button onClick={signOut}> <FontAwesomeIcon icon={faFacebook} /> Sign Out</button> :
+            {user.isSignedIn ? <button onClick={signOut}> <FontAwesomeIcon icon={faFacebook} /> Sign Out</button> :
                 <button onClick={fbSignIn}><FontAwesomeIcon icon={faFacebook} />Sign In</button>
             }
             {
@@ -114,7 +116,7 @@ function LogIn() {
                 <input type="submit" value={newUser ? 'Sign up' : 'Sign in'} />
             </form>
             <p style={{ color: 'red' }}>{user.error}</p>
-            { user.success && <p style={{ color: 'green' }}>User {newUser ? 'created' : 'Logged In'} successfully</p>}
+            {user.success && <p style={{ color: 'green' }}>User {newUser ? 'created' : 'Logged In'} successfully</p>}
         </div>
     );
 }
